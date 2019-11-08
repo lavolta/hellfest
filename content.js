@@ -29,8 +29,13 @@ byTicket();
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if( request.message === "clicked_browser_action" ) {
+            let storage = window.localStorage;
+            if(storage.getItem('hellFest')) {
+                storage.removeItem('hellFest')
+            } else {
             window.localStorage.setItem('hellFest', 1);
             initScript();
+            }
         }
     }
 );
